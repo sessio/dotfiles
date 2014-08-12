@@ -1,7 +1,7 @@
 My dotfiles
 ========
 
-PyTTy config:
+PuTTy/nutty config:
 
 - Change conf->connection-> terminal-type string to `xterm-256color`
 - Window->translation-> UTF8 charset
