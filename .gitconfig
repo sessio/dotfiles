@@ -1,10 +1,9 @@
 [user]
-	email = sessio@gmail.com
-	name = Toni Miettinen
+    email = sessio@gmail.com
+    name = Toni Miettinen
 
 [push]
     default = current
 
 [color]
     ui = true
-
