@@ -1,0 +1,38 @@
+# setup git prompt (copied from https://github.com/cowboy/dotfiles/blob/master/source/50_prompt.sh)
+function prompt_git() {
+  local status output flags
+  status="$(git status 2>/dev/null)"
+  [[ $? != 0 ]] && return;
+  output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
+  [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
+  [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+  flags="$(
+    echo "$status" | awk 'BEGIN {r=""} \
+      /^# Changes to be committed:$/ {r=r "+"}\
+      /^# Changes not staged for commit:$/ {r=r "!"}\
+      /^# Untracked files:$/ {r=r "?"}\
+      END {print r}'
+  )"
+  if [[ "$flags" ]]; then
+    output="$output$c1:$c0$flags"
+  fi
+  echo " $c1[$c0$output$c1]$c9"
+}
+
+# display # in the end of the prompt if we have elevated (sudo rights) active
+function elevated() {
+  sudo -n uptime 2>/dev/null 1>/dev/null
+  local elevated=`if (($?==0));then echo true;else echo false;fi`
+  if $elevated; then
+    echo '#'
+  fi
+}
+
+# set prompt with git-awareness
+PS1='${debian_chroot:+($debian_chroot)}\[\033[0;32m\]\u@\h\[\033[00m\]\[\033[0;36m\]$(prompt_git)\[\033[00m\]:\[\033[0;34m\]\w\[\033[00m\]\$\[\033[0;31m\]$(elevated)\[\033[00m\] '
+
+# set window title
+USER=$(/usr/bin/id -un)
+HOSTNAME=$(uname -n)
+HOSTNAME=${HOSTNAME%%.*}
+PROMPT_COMMAND='echo -ne "\e]0;$USER@${HOSTNAME}: $(pwd -P)\a"'
