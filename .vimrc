@@ -30,6 +30,9 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>0 10gt
 
+nnoremap <tab> :tabnext<CR>
+nnoremap <S-tab> :tabprevious<CR>
+
 " open new buffers in tabs as default
 set switchbuf=usetab,newtab
 
