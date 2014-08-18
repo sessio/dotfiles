@@ -1,7 +1,6 @@
 syntax enable
 syntax on
 
-set tabstop=2
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -36,14 +35,11 @@ nnoremap <S-tab> :tabprevious<CR>
 " open new buffers in tabs as default
 set switchbuf=usetab,newtab
 
-autocmd filetype html,make set noexpandtab
-
 set pastetoggle=<F2>
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " Vundle conf
+set nocompatible              " be iMproved, required
+filetype off                  " required for duration of vundle conf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -58,6 +54,9 @@ Plugin 'bling/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'Shutnik/jshint2.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -68,6 +67,8 @@ Plugin 'Shutnik/jshint2.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+autocmd filetype make set noexpandtab " makefiles need real tabs
+
 " Airline settings
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -76,6 +77,12 @@ set laststatus=2
 " Solarized theme
 set background=dark
 colorscheme solarized
+
+" indent-guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1 " <Leader>ig toggles
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " set vim to watch vim config file for changes
 augroup myvimrc
