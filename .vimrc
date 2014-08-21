@@ -60,6 +60,11 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'nathanaelkane/vim-indent-guides'
 
+" vim-snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
 Plugin 'editorconfig/editorconfig-vim'
 
 " Plugin 'file:///home/gmarik/path/to/plugin'
