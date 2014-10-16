@@ -36,3 +36,6 @@ USER=$(/usr/bin/id -un)
 HOSTNAME=$(uname -n)
 HOSTNAME=${HOSTNAME%%.*}
 PROMPT_COMMAND='echo -ne "\e]0;$USER@${HOSTNAME}: $(pwd -P)\a"'
+
+# set up an unicode language to enable vim-airline font special chars
+export LANG=en_US.utf8
