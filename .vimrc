@@ -99,6 +99,9 @@ autocmd VimEnter * ToggleStripWhitespaceOnSave
 " custom filetypes
 au BufNewFile,BufRead *.tmpl set filetype=html
 
+" jshint on save
+au BufWritePost *.js :JSHint
+
 " set vim to watch vim config file for changes
 augroup myvimrc
   au!
